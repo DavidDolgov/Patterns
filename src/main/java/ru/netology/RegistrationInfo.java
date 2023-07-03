@@ -1,9 +1,6 @@
 package ru.netology;
 
-import com.github.javafaker.DateAndTime;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class RegistrationInfo {

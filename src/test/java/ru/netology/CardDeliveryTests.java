@@ -53,8 +53,6 @@ public class CardDeliveryTests {
         $("[data-test-id=success-notification] .notification__title").should(Condition.appear);
         $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + info.getDate2()));
 
-        printTestData(info.getCity(), info.getDate(), info.getDate2(), info.getLastName(), info.getFirstName(), info.getPhone());
-
     }
 
     @Test
@@ -255,12 +253,6 @@ public class CardDeliveryTests {
 
         $("[data-test-id=agreement].input_invalid .checkbox__text").shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
 
-    }
-
-    private void printTestData(String city, String date, String date2, String firstName, String lastName, String phone) {
-        System.out.println("====================================");
-        System.out.println(city + "\n" + date + "\n" + date2 + "\n" + firstName + " " + lastName + "\n" + phone);
-        System.out.println("====================================");
     }
 
 }
