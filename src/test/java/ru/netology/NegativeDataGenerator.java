@@ -1,12 +1,14 @@
 package ru.netology;
 
 import com.github.javafaker.Faker;
+import lombok.experimental.UtilityClass;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Random;
 
+@UtilityClass
 public class NegativeDataGenerator {
 
     public String noCity(String locale) {

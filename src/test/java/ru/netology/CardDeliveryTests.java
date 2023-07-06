@@ -10,8 +10,13 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTests {
 
-    GeneratorDate date = new GeneratorDate();
-    NegativeDataGenerator negative = new NegativeDataGenerator();
+    String date = GeneratorDate.generateDate("dd.MM.yyyy");
+    String noCity = NegativeDataGenerator.noCity("ru");
+    String noDate = NegativeDataGenerator.noDate("dd.MM.yyyy");
+    String randomDate = NegativeDataGenerator.randomDate();
+    String nameAnotherLocation = NegativeDataGenerator.nameAnotherLocation("ru");
+    String noNumber = NegativeDataGenerator.noNumber();
+    String randomWord = NegativeDataGenerator.randomWord("ru");
 
     @BeforeEach
     void setUP() {
@@ -26,19 +31,19 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
 
         $("[data-test-id=success-notification] .notification__title").should(Condition.appear);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date.generateDate("dd.MM.yyyy")));
+        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date));
 
         $("[data-test-id=city] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
@@ -51,7 +56,7 @@ public class CardDeliveryTests {
         $("[data-test-id=replan-notification] .button").click();
 
         $("[data-test-id=success-notification] .notification__title").should(Condition.appear);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date.generateDate("dd.MM.yyyy")));
+        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date));
 
     }
 
@@ -60,9 +65,9 @@ public class CardDeliveryTests {
 
         RegistrationInfo info = DataGenerator.Registration.generateInfo("ru");
 
-        $("[data-test-id=city] .input__control").setValue(negative.noCity("ru"));
+        $("[data-test-id=city] .input__control").setValue(noCity);
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
@@ -76,9 +81,9 @@ public class CardDeliveryTests {
 
         RegistrationInfo info = DataGenerator.Registration.generateInfo("ru");
 
-        $("[data-test-id=city] .input__control").setValue(negative.noCity("en"));
+        $("[data-test-id=city] .input__control").setValue(noCity);
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
@@ -94,7 +99,7 @@ public class CardDeliveryTests {
         RegistrationInfo info = DataGenerator.Registration.generateInfo("ru");
 
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
@@ -111,7 +116,7 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(negative.noDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(noDate);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
@@ -128,7 +133,7 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(negative.randomDate());
+        $("[data-test-id=date] .input__control").setValue(randomDate);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
@@ -161,8 +166,8 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
-        $("[data-test-id=name] .input__control ").setValue(negative.nameAnotherLocation("ru"));
+        $("[data-test-id=date] .input__control").setValue(date);
+        $("[data-test-id=name] .input__control ").setValue(nameAnotherLocation);
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
@@ -178,7 +183,7 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
@@ -194,14 +199,14 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
-        $("[data-test-id=phone] .input__control ").setValue(negative.noNumber());
+        $("[data-test-id=phone] .input__control ").setValue(noNumber);
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
 
         $("[data-test-id=success-notification] .notification__title").should(Condition.appear);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date.generateDate("dd.MM.yyyy")));
+        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date));
 
     }
 
@@ -212,14 +217,14 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
-        $("[data-test-id=phone] .input__control ").setValue(negative.randomWord("ru"));
+        $("[data-test-id=phone] .input__control ").setValue(randomWord);
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
 
         $("[data-test-id=success-notification] .notification__title").should(Condition.appear);
-        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date.generateDate("dd.MM.yyyy")));
+        $("[data-test-id=success-notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + date));
 
     }
 
@@ -230,7 +235,7 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=agreement]").click();
         $x("//div//span[contains(text(),'Запланировать')]").click();
@@ -246,7 +251,7 @@ public class CardDeliveryTests {
 
         $("[data-test-id=city] .input__control").setValue(info.getCity());
         $("[data-test-id=date] .input__control").sendKeys(Keys.LEFT_SHIFT, Keys.ARROW_UP, Keys.BACK_SPACE);
-        $("[data-test-id=date] .input__control").setValue(date.generateDate("dd.MM.yyyy"));
+        $("[data-test-id=date] .input__control").setValue(date);
         $("[data-test-id=name] .input__control").setValue(info.getLastName() + " " + info.getFirstName());
         $("[data-test-id=phone] .input__control").setValue(info.getPhone());
         $x("//div//span[contains(text(),'Запланировать')]").click();
